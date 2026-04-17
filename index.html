@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="You're invited to celebrate the engagement of Eslam & Noura" />
+  <title>Eslam &amp; Noura — Engagement Celebration</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+
+  <style>
+    /* ─── RESET & VARIABLES ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ivory:      #FDF8F3;
+      --cream:      #F5EFE6;
+      --blush:      #E8C5C0;
+      --rose:       #C9908A;
+      --gold:       #BFA16A;
+      --gold-light: #D4B98A;
+      --gold-dark:  #8C7040;
+      --text-dark:  #3D2B1F;
+      --text-mid:   #6B4C3B;
+      --text-soft:  #9C7B6B;
+      --white:      #FFFFFF;
+      --shadow-sm:  0 2px 12px rgba(100,60,40,.10);
+      --shadow-md:  0 6px 32px rgba(100,60,40,.14);
+      --shadow-lg:  0 16px 60px rgba(100,60,40,.18);
+      --radius:     16px;
+      --radius-sm:  8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--ivory);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── FLOATING HEARTS ────────────────────────────────────────────────── */
+    .hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      font-size: 14px;
+      opacity: 0;
+      animation: floatHeart linear infinite;
+      color: var(--rose);
+      filter: blur(0.3px);
+    }
+
+    @keyframes floatHeart {
+      0%   { transform: translateY(0) rotate(-10deg) scale(1);   opacity: 0; }
+      10%  { opacity: 0.35; }
+      90%  { opacity: 0.15; }
+      100% { transform: translateY(-110vh) rotate(15deg) scale(1.3); opacity: 0; }
+    }
+
+    /* ─── MUSIC TOGGLE ───────────────────────────────────────────────────── */
+    .music-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 999;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(191,161,106,.35);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: var(--gold-dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all .3s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .music-btn:hover { background: rgba(255,255,255,0.97); box-shadow: var(--shadow-md); }
+    .music-btn .note { font-size: 14px; transition: transform .4s; }
+    .music-btn.playing .note { animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── HERO SECTION ───────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1606216840950-e93b7b1d88a5?w=1600&q=90&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.04);
+      animation: heroZoom 18s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1.10); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(60,30,20,.55) 0%,
+        rgba(90,45,30,.40) 40%,
+        rgba(30,15,10,.65) 100%
+      );
+    }
+
+    .hero-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(253,248,243,.25) 0%,
+        transparent 20%,
+        transparent 75%,
+        rgba(253,248,243,.30) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeSlideUp .9s cubic-bezier(.25,.8,.25,1) both;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+      border: 1px solid rgba(255,255,255,.30);
+      border-radius: 50px;
+      padding: 5px 18px;
+      margin-bottom: 28px;
+      animation: fadeSlideUp .9s .15s both;
+    }
+
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(58px, 14vw, 112px);
+      line-height: 1.0;
+      color: var(--white);
+      letter-spacing: -.01em;
+      animation: fadeSlideUp .9s .3s both;
+    }
+
+    .hero-names .ampersand {
+      font-style: italic;
+      color: var(--gold-light);
+      display: block;
+      font-size: .55em;
+      line-height: 1.5;
+      letter-spacing: .04em;
+    }
+
+    .hero-subtitle {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+      font-size: clamp(13px, 3.5vw, 17px);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.82);
+      margin-top: 20px;
+      animation: fadeSlideUp .9s .45s both;
+    }
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px auto 0;
+      animation: fadeSlideUp .9s .55s both;
+    }
+    .hero-divider span { width: 60px; height: 1px; background: rgba(255,255,255,.40); display: block; }
+    .hero-divider .gem { font-size: 18px; }
+
+    .hero-date-badge {
+      margin-top: 32px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: var(--radius);
+      padding: 14px 28px;
+      animation: fadeSlideUp .9s .65s both;
+    }
+    .hero-date-badge .date-label {
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+      font-weight: 400;
+    }
+    .hero-date-badge .date-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 5vw, 26px);
+      font-weight: 400;
+      color: var(--white);
+      margin-top: 4px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeSlideUp .9s .9s both;
+      z-index: 2;
+    }
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+    }
+    .scroll-hint .arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 1.5px solid rgba(255,255,255,.5);
+      border-bottom: 1.5px solid rgba(255,255,255,.5);
+      transform: rotate(45deg);
+      animation: bounce 1.6s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ─── SECTION SHARED ─────────────────────────────────────────────────── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-tag {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 8vw, 52px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0 32px;
+    }
+    .ornament .line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold-light), transparent); }
+    .ornament .icon { font-size: 16px; color: var(--gold); }
+
+    /* ─── COUNTDOWN ──────────────────────────────────────────────────────── */
+    .countdown-section { background: var(--cream); }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .countdown-cell {
+      background: var(--white);
+      border: 1px solid rgba(191,161,106,.20);
+      border-radius: var(--radius);
+      padding: 20px 8px 14px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-cell::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blush), var(--gold-light), var(--blush));
+    }
+
+    .countdown-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 9vw, 56px);
+      font-weight: 500;
+      color: var(--text-dark);
+      line-height: 1;
+      display: block;
+    }
+
+    .countdown-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-top: 6px;
+      display: block;
+    }
+
+    .countdown-done {
+      text-align: center;
+      padding: 32px 16px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 6vw, 36px);
+      font-style: italic;
+      color: var(--rose);
+    }
+
+    /* ─── LOCATION ───────────────────────────────────────────────────────── */
+    .location-section { background: var(--ivory); }
+
+    .map-wrapper {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      border: 1px solid rgba(191,161,106,.18);
+      height: 320px;
+      background: #e8ddd4;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      pointer-events: none;
+    }
+
+    .map-heart-pin {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -65%);
+      font-size: 28px;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,.35));
+      animation: pinPulse 1.8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @keyframes pinPulse {
+      0%, 100% { transform: translate(-50%, -65%) scale(1); }
+      50%       { transform: translate(-50%, -72%) scale(1.12); }
+    }
+
+    .map-click-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      background: transparent;
+    }
+
+    .map-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to top, rgba(253,248,243,.5), transparent);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .map-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ─── BUTTONS ────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 50px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all .28s cubic-bezier(.25,.8,.25,1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0);
+      transition: background .2s;
+    }
+    .btn:active::after { background: rgba(255,255,255,.15); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(140,112,64,.30);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(140,112,64,.40);
+    }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--text-dark);
+      border: 1.5px solid rgba(191,161,106,.40);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366 0%, #1da851 100%);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(37,211,102,.28);
+      flex: 1;
+      min-width: 200px;
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,211,102,.38);
+    }
+
+    /* ─── CALENDAR SECTION ───────────────────────────────────────────────── */
+    .calendar-section {
+      background: linear-gradient(160deg, var(--cream) 0%, var(--ivory) 100%);
+    }
+
+    .calendar-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(191,161,106,.20);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .event-summary {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .event-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--rose) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .event-meta { flex: 1; }
+    .event-meta strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .event-meta span {
+      font-size: 13px;
+      color: var(--text-soft);
+      font-weight: 300;
+    }
+
+    add-to-calendar-button {
+      --btn-background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      --btn-text: #fff;
+      --btn-border: none;
+      --btn-shadow: 0 4px 20px rgba(140,112,64,.30);
+      --btn-font-weight: 600;
+      --btn-border-radius: 50px;
+      display: block;
+      width: 100%;
+    }
+
+    #ics-fallback { display: none; }
+
+    /* ─── SHARE SECTION ──────────────────────────────────────────────────── */
+    .share-section {
+      background: var(--ivory);
+    }
+
+    .share-card {
+      background: linear-gradient(135deg, #FDFAF7 0%, #F9F1EA 100%);
+      border: 1px solid rgba(191,161,106,.22);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .share-message-preview {
+      background: rgba(255,255,255,.8);
+      border: 1px solid rgba(191,161,106,.18);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 300;
+    }
+
+    .share-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--text-dark);
+      text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(191,161,106,.10) 0%, transparent 70%);
+    }
+
+    footer p {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      color: rgba(255,255,255,.45);
+      letter-spacing: .08em;
+    }
+    footer .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 7vw, 44px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────────── */
+    @media (min-width: 480px) {
+      .countdown-num { font-size: clamp(44px, 7vw, 60px); }
+    }
+
+    @media (max-width: 360px) {
+      .countdown-grid { gap: 8px; }
+      .countdown-cell { padding: 14px 4px 10px; }
+    }
+
+    /* ─── GOLD SHIMMER UTILITY ───────────────────────────────────────────── */
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, var(--gold-dark) 30%, var(--gold-light) 50%, var(--gold-dark) 70%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3.5s linear infinite;
+    }
+
+    .section-divider {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(191,161,106,.25), transparent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating Hearts -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- Music Toggle Button -->
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music">
+    <span class="note">🔊</span>
+    <span id="musicLabel">Play Music</span>
+  </button>
+
+  <!-- Audio element — no autoplay -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ═══════════════════════════════════════════════════════ HERO ══ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <span class="hero-label">💍 &nbsp; An engagement invitation &nbsp; 💍</span>
+
+      <h1 class="hero-names">
+        Eslam
+        <span class="ampersand">&amp;</span>
+        Noura
+      </h1>
+
+      <p class="hero-subtitle">You're invited to celebrate our engagement</p>
+
+      <div class="hero-divider">
+        <span></span>
+        <span class="gem">✦</span>
+        <span></span>
+      </div>
+
+      <div class="hero-date-badge">
+        <span class="date-label">Save the date</span>
+        <span class="date-value">Saturday · May 2, 2026 · 7:00 PM</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+  </section>
+
+  <span class="section-divider"></span>
+
+  <!-- ══════════════════════════════════════════════ COUNTDOWN ══ -->
+  <section class="countdown-section" id="countdown">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-tag">✦ &nbsp; Until we celebrate &nbsp; ✦</span>
+        <h2 class="section-title">The <em>big day</em> is coming</h2>
+        <div class="ornament">
+          <span class="line"></span>
+          <span class="icon">💍</span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div id="countdownContent" class="reveal">
+        <div class="countdown-grid" id="countdownGrid">
+          <div class="countdown-cell">
+            <span class="countdown-num" id="cd-days">--</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-cell">
+            <span class="countdown-num" id="cd-hours">--</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-cell">
+            <span class="countdown-num" id="cd-mins">--</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-cell">
+            <span class="countdown-num" id="cd-secs">--</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <span class="section-divider"></span>
+
+  <!-- ══════════════════════════════════════════════ LOCATION ══ -->
+  <section class="location-section" id="location">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-tag">✦ &nbsp; Find us here &nbsp; ✦</span>
+        <h2 class="section-title">The <em>venue</em></h2>
+        <div class="ornament">
+          <span class="line"></span>
+          <span class="icon">📍</span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="map-wrapper" id="mapWrapper">
+          <!-- Google Maps embed iframe — no API key required -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.5!2d31.2169!3d30.0618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAzJzQyLjUiTiAzMcKwMTMnMDAuOCJF!5e0!3m2!1sen!2seg!4v1680000000000!5m2!1sen!2seg"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Event Location — Cairo"
+            allowfullscreen
+          ></iframe>
+          <!-- Clickable overlay → opens original Google Maps link -->
+          <a class="map-click-overlay"
+             href="https://maps.app.goo.gl/jVbJUAtMUFck7eKn8"
+             target="_blank"
+             rel="noopener"
+             aria-label="Open in Google Maps"></a>
+          <div class="map-gradient"></div>
+          <!-- Heart pin overlay above map center -->
+          <div class="map-heart-pin">❤️</div>
+        </div>
+
+        <div class="map-actions">
+          <a href="https://maps.app.goo.gl/jVbJUAtMUFck7eKn8"
+             target="_blank"
+             rel="noopener"
+             class="btn btn-primary"
+             onclick="vibrate()">
+            📍 &nbsp; Open in Maps
+          </a>
+          <a href="https://maps.app.goo.gl/jVbJUAtMUFck7eKn8"
+             target="_blank"
+             rel="noopener"
+             class="btn btn-outline"
+             onclick="vibrate()">
+            🗺 &nbsp; Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <span class="section-divider"></span>
+
+  <!-- ══════════════════════════════════════════════ CALENDAR ══ -->
+  <section class="calendar-section" id="calendar">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-tag">✦ &nbsp; Don't miss it &nbsp; ✦</span>
+        <h2 class="section-title">Add to <em>Calendar</em></h2>
+        <div class="ornament">
+          <span class="line"></span>
+          <span class="icon">📅</span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="calendar-card">
+          <div class="event-summary">
+            <div class="event-icon">💍</div>
+            <div class="event-meta">
+              <strong>Eslam &amp; Noura — Engagement Party</strong>
+              <span>Saturday, May 2, 2026 · 7:00 PM · Cairo</span>
+            </div>
+          </div>
+
+          <div id="atcbWrapper" style="width:100%">
+            <add-to-calendar-button
+              name="Engagement Party 💍 — Eslam &amp; Noura"
+              description="Join us to celebrate our special day! 🎉 We are so excited to share this moment with you. ❤️"
+              startDate="2026-05-02"
+              startTime="19:00"
+              endTime="23:00"
+              timeZone="Africa/Cairo"
+              location="https://maps.app.goo.gl/jVbJUAtMUFck7eKn8"
+              options="'Apple','Google','Outlook.com','iCal'"
+              trigger="click"
+              size="5"
+              lightMode="light"
+              styleLight="--btn-background: linear-gradient(135deg,#BFA16A,#8C7040); --btn-text: #fff; --btn-border: none; --btn-shadow: 0 4px 20px rgba(140,112,64,.30); --btn-font-weight: 600; --btn-border-radius: 50px;"
+              label="Add to My Calendar"
+            ></add-to-calendar-button>
+          </div>
+
+          <button class="btn btn-outline" id="ics-fallback" onclick="downloadICS(); vibrate()">
+            📥 &nbsp; Download .ics File
+          </button>
+
+          <p style="font-size:11px;color:var(--text-soft);text-align:center;width:100%;margin-top:-8px;letter-spacing:.04em;">
+            We'll send a reminder 24 hours before the celebration ✨
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <span class="section-divider"></span>
+
+  <!-- ══════════════════════════════════════════════ SHARE ══ -->
+  <section class="share-section" id="share">
+    <div class="section-inner">
+      <div class="reveal">
+        <span class="section-tag">✦ &nbsp; Spread the joy &nbsp; ✦</span>
+        <h2 class="section-title">Share the <em>love</em></h2>
+        <div class="ornament">
+          <span class="line"></span>
+          <span class="icon">💌</span>
+          <span class="line"></span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="share-card">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(15px,4vw,20px);color:var(--text-mid);margin-bottom:16px;font-style:italic;">
+            Know someone who should be there? Share with them ✨
+          </p>
+
+          <div class="share-message-preview" id="sharePreview">
+            💍 You're invited to our engagement!<br/>
+            Eslam &amp; Noura — Saturday, May 2, 2026 at 7:00 PM<br/>
+            📍 Join us: <span style="color:var(--gold-dark);word-break:break-all;">https://maps.app.goo.gl/jVbJUAtMUFck7eKn8</span>
+          </div>
+
+          <div class="share-actions">
+            <a href="https://wa.me/?text=%F0%9F%92%8D+You%E2%80%99re+invited+to+our+engagement%21%0AEslam+%26+Noura+%E2%80%94+Saturday%2C+May+2%2C+2026+at+7%3A00+PM%0A%F0%9F%93%8D+Join+us%3A+https%3A%2F%2Fmaps.app.goo.gl%2FjVbJUAtMUFck7eKn8"
+               target="_blank"
+               rel="noopener"
+               class="btn btn-whatsapp"
+               onclick="vibrate()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Share via WhatsApp
+            </a>
+
+            <button class="btn btn-outline" onclick="copyInvite(); vibrate()" id="copyBtn">
+              📋 &nbsp; Copy Invite Link
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════ FOOTER ══ -->
+  <footer>
+    <span class="footer-names">Eslam &amp; Noura</span>
+    <p>Saturday · May 2, 2026 · 7:00 PM · Cairo</p>
+    <p style="margin-top:8px;">Made with ❤️ for a once-in-a-lifetime moment</p>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════ JAVASCRIPT ═══ -->
+  <script>
+    /* ── CONFIG ─────────────────────────────────────────────────── */
+    const EVENT_DATE   = new Date('2026-05-02T19:00:00+02:00');
+    const LOCATION_URL = 'https://maps.app.goo.gl/jVbJUAtMUFck7eKn8';
+
+    /* ── FLOATING HEARTS ─────────────────────────────────────────── */
+    (function spawnHearts() {
+      const container = document.getElementById('heartsContainer');
+      const symbols   = ['♥', '♡', '❤', '✿'];
+      const total     = 14;
+
+      for (let i = 0; i < total; i++) {
+        const h = document.createElement('div');
+        h.className   = 'heart';
+        h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+        const leftPct  = Math.random() * 100;
+        const duration = 14 + Math.random() * 18;
+        const delay    = Math.random() * 20;
+        const size     = 10 + Math.random() * 10;
+
+        h.style.cssText = `
+          left: ${leftPct}%;
+          font-size: ${size}px;
+          animation-duration: ${duration}s;
+          animation-delay: -${delay}s;
+          opacity: 0;
+          color: hsl(${340 + Math.random() * 30}, 60%, ${60 + Math.random() * 20}%);
+        `;
+        container.appendChild(h);
+      }
+    })();
+
+    /* ── COUNTDOWN ───────────────────────────────────────────────── */
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function updateCountdown() {
+      const diff = EVENT_DATE.getTime() - Date.now();
+
+      if (diff <= 0) {
+        document.getElementById('countdownContent').innerHTML =
+          '<div class="countdown-done">We\'re celebrating today! 💍</div>';
+        return;
+      }
+
+      const totalSecs = Math.floor(diff / 1000);
+      const d = Math.floor(totalSecs / 86400);
+      const h = Math.floor((totalSecs % 86400) / 3600);
+      const m = Math.floor((totalSecs % 3600) / 60);
+      const s = totalSecs % 60;
+
+      document.getElementById('cd-days').textContent  = pad(d);
+      document.getElementById('cd-hours').textContent = pad(h);
+      document.getElementById('cd-mins').textContent  = pad(m);
+      document.getElementById('cd-secs').textContent  = pad(s);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    /* ── MUSIC — starts only after first user interaction ────────── */
+    const musicBtn    = document.getElementById('musicBtn');
+    const musicLabel  = document.getElementById('musicLabel');
+    const bgMusic     = document.getElementById('bgMusic');
+    let   musicReady  = false;
+    let   musicPlaying = false;
+
+    function startMusicOnInteraction() {
+      if (musicReady) return;
+      musicReady = true;
+      bgMusic.volume = 0.35;
+      bgMusic.play().then(() => {
+        musicPlaying = true;
+        musicLabel.textContent = 'Playing';
+        musicBtn.classList.add('playing');
+      }).catch(() => {
+        /* autoplay blocked — user can still click the button manually */
+      });
+      document.removeEventListener('click',      startMusicOnInteraction);
+      document.removeEventListener('touchstart', startMusicOnInteraction);
+    }
+
+    document.addEventListener('click',      startMusicOnInteraction, { once: true });
+    document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
+
+    /* Manual toggle button */
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); /* prevent double-trigger with document listener */
+      vibrate();
+      if (musicPlaying) {
+        bgMusic.pause();
+        musicLabel.textContent = 'Play Music';
+        musicBtn.classList.remove('playing');
+        musicPlaying = false;
+      } else {
+        bgMusic.volume = 0.35;
+        bgMusic.play().then(() => {
+          musicPlaying = true;
+          musicReady   = true;
+          musicLabel.textContent = 'Playing';
+          musicBtn.classList.add('playing');
+        }).catch(() => {});
+      }
+    });
+
+    /* ── VIBRATE HELPER ──────────────────────────────────────────── */
+    function vibrate() {
+      if (navigator.vibrate) navigator.vibrate([40]);
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────────── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── ICS DOWNLOAD FALLBACK ───────────────────────────────────── */
+    function downloadICS() {
+      const dtStart = '20260502T170000Z';
+      const dtEnd   = '20260502T210000Z';
+      const dtStamp = new Date().toISOString().replace(/[-:]/g,'').slice(0,15) + 'Z';
+      const alarmDt = '20260501T170000Z';
+
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Eslam & Noura Engagement//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        `DTSTAMP:${dtStamp}`,
+        'UID:eslam-noura-engagement-2026@celebration',
+        'SUMMARY:Engagement Party 💍 — Eslam & Noura',
+        `LOCATION:${LOCATION_URL}`,
+        'DESCRIPTION:Join us to celebrate our special day! 🎉',
+        'BEGIN:VALARM',
+        'ACTION:DISPLAY',
+        'DESCRIPTION:Reminder: Eslam & Noura Engagement tomorrow! 💍',
+        `TRIGGER;VALUE=DATE-TIME:${alarmDt}`,
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href     = URL.createObjectURL(blob);
+      link.download = 'Eslam-Noura-Engagement.ics';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    /* Check if add-to-calendar-button loaded; show fallback if not */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const atcb = document.querySelector('add-to-calendar-button');
+        if (!atcb || !atcb.shadowRoot) {
+          document.getElementById('atcbWrapper').style.display = 'none';
+          document.getElementById('ics-fallback').style.display = 'inline-flex';
+        }
+      }, 3500);
+    });
+
+    /* ── COPY INVITE ─────────────────────────────────────────────── */
+    function copyInvite() {
+      const msg = `💍 You're invited to our engagement!\nEslam & Noura — Saturday, May 2, 2026 at 7:00 PM\n📍 Join us: ${LOCATION_URL}`;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(msg).then(() => flash('✅ Copied!'));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = msg;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        flash('✅ Copied!');
+      }
+    }
+
+    function flash(label) {
+      const btn  = document.getElementById('copyBtn');
+      const orig = btn.innerHTML;
+      btn.innerHTML = label;
+      btn.style.borderColor = 'var(--gold)';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.borderColor = ''; }, 2200);
+    }
+  </script>
+
+</body>
+</html>
